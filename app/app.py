@@ -4,7 +4,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 from contextlib import asynccontextmanager 
 import time
-from notebooks.utils import *
+from utils import *
 
 import smtplib
 from email.mime.multipart import MIMEMultipart

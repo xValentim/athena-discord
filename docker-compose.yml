@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: ./bot
+    container_name: bot-service
+    restart: always
+
+  app:
+    build:
+      context: ./app
+    container_name: app-service
+    ports:
+      - "8000:8000"  # Expõe a porta 8000 para acessar o FastAPI
+    restart: always
