@@ -63,7 +63,7 @@ def cron_newsletter():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     scheduler = BackgroundScheduler()
-    scheduler.add_job(cron_newsletter, 'interval', seconds=10)
+    scheduler.add_job(cron_newsletter, 'interval', days=1)
     scheduler.start()
     print("Scheduler started...")
     yield
@@ -75,7 +75,3 @@ app = FastAPI(lifespan=lifespan)
 @app.get("/")
 def read_root():
     return {"Status": "Running..."}
-
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app, host='0.0.0.0', port=1414)
