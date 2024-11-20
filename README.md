@@ -99,4 +99,4 @@ About **summarization** tasks, there are several approaches to summarization but
    - Evaluation metrics comparing embeddings and cosine similarity.
 
 3. **Video Pitch**:
-   - A 3-minute video demonstrating the bot, summarization quality, and user impact metrics. You can acces it [here]().
+   - A 3-minute video demonstrating the bot, summarization quality, and user impact metrics. You can acces it [here](https://youtu.be/llNRnTNHbyk).
