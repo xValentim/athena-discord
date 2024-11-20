@@ -14,6 +14,8 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from dotenv import load_dotenv 
 
+from markdown2 import Markdown
+
 load_dotenv()
 
 def send_email(to_email: str,
@@ -47,18 +49,21 @@ def cron_newsletter():
     with open('./emails.txt', 'r') as f:
         emails = f.read().split('\n')
     
+    markdowner = Markdown()
+    newsletter_html = markdowner.convert(newsletter)
+    
     for email in emails:
         print(f"Sending newsletter to {email}...")
         send_email(to_email=email,
                    subject='Newsletter - Athena',
-                   body=newsletter)
+                   body=newsletter_html)
     print("Newsletter sent...")
     
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     scheduler = BackgroundScheduler()
-    scheduler.add_job(cron_newsletter, 'interval', minutes=1)
+    scheduler.add_job(cron_newsletter, 'interval', seconds=10)
     scheduler.start()
     print("Scheduler started...")
     yield

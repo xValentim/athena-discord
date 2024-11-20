@@ -1,6 +1,8 @@
 langchain
 openai
 pypdf
+markdown2
+scikit-learn
 discord.py
 pydantic==1.10.13
 tiktoken
