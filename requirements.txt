@@ -4,7 +4,9 @@ pypdf
 markdown2
 scikit-learn
 pydantic==1.10.13
+discord.py
 tiktoken
+nest-asyncio
 python-dotenv
 bs4
 html2text
