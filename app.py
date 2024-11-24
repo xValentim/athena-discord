@@ -5,6 +5,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from contextlib import asynccontextmanager 
 import time
 from utils import *
+from pytz import timezone
 
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -62,9 +63,9 @@ def cron_newsletter():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    scheduler = BackgroundScheduler()
+    scheduler = BackgroundScheduler(timezone=timezone('America/Sao_Paulo'))
     # Configurando o cron job para executar todos os dias às 9:05
-    scheduler.add_job(cron_newsletter, 'cron', hour=9, minute=2)
+    scheduler.add_job(cron_newsletter, 'cron', hour=9, minute=15)
     scheduler.start()
     print("Scheduler started...")
     yield
