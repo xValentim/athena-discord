@@ -63,13 +63,14 @@ def cron_newsletter():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     scheduler = BackgroundScheduler()
-    scheduler.add_job(cron_newsletter, 'interval', days=1)
+    # Configurando o cron job para executar todos os dias às 9:05
+    scheduler.add_job(cron_newsletter, 'cron', hour=9, minute=2)
     scheduler.start()
     print("Scheduler started...")
     yield
     scheduler.shutdown()
     print("Scheduler stopped...")
-
+  
 app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
